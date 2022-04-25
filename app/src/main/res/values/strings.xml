@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EASY WAY</string>
+    <string name="sign_in_email">Enter your email</string>
+    <string name="sign_in_pass">Enter your Password</string>
+    <string name="Name_signup">Enter your name</string>
+    <string name="St_id_signup">Enter your ID</string>
+    <string name="Confirm_pass_signup"> Confirm password</string>
+    <string name="Age_signup"> your Age</string>
+    <string name="Handicap_spinner_signup">Select one of the below</string>
+    <string name="Location_spinner_signup">Select one of the below</string>
+
+</resources>

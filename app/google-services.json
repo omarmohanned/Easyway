@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94925511376",
+    "project_id": "yutransport-e2224",
+    "storage_bucket": "yutransport-e2224.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94925511376:android:67ae8bd0964d70a6aa9cd5",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94925511376-j918qvom3bhkf5ftf0pucvegloukpir5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6B2CZluN_JrPEqU8spE--Jy_QoxREraU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94925511376-j918qvom3bhkf5ftf0pucvegloukpir5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
