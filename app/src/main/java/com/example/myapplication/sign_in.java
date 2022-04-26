@@ -29,7 +29,6 @@ public class sign_in extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
         FirebaseUser currentuser = firebaseAuth.getCurrentUser();
 
         if (currentuser != null) {
@@ -40,7 +39,7 @@ public class sign_in extends AppCompatActivity {
     }
 
     private void updateUI() {
-        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "YOU ARE ALREADY LOGGED IN", Toast.LENGTH_LONG).show();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
@@ -73,8 +72,9 @@ public class sign_in extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         finish();
-                                    } else {
+                                    } else{
                                         Snackbar.make(view, task.getException().getMessage().substring(30), Snackbar.LENGTH_LONG).show();
+
                                     }
                                 }
                             });
