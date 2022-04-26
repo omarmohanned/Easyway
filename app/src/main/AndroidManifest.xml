@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Sign_up"
+            android:name=".sign_in"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -19,7 +19,7 @@
             android:name=".SplashScreen"
             android:exported="false" />
         <activity
-            android:name=".sign_in"
+            android:name=".Sign_up"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

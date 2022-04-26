@@ -15,12 +15,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Sign_up extends AppCompatActivity {
     EditText first_name, last_name, St_id, Password, Conf_pass, email, Age;
     Spinner Location, Handicap;
     Button register;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +39,21 @@ public class Sign_up extends AppCompatActivity {
         Conf_pass = findViewById(R.id.Conf_pass);
         email = findViewById(R.id.email);
         Age = findViewById(R.id.Age);
-        //////
+        ////////
+        St_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Student id should be 10 digits", Snackbar.LENGTH_LONG).show();
+            }
+        });
+        ///////
         Location = findViewById(R.id.Location);
         Handicap = findViewById(R.id.Handicap);
         //////////
         register = findViewById(R.id.Register);
         /////////////
         firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         ///////////
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +63,17 @@ public class Sign_up extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-
                                     Snackbar.make(view, "completed", Snackbar.LENGTH_LONG).show();
+                                    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                                    ////////
+                                    databaseReference.child(firebaseUser.getUid()).child("First_name").setValue(first_name.getText().toString());
+                                    databaseReference.child(firebaseUser.getUid()).child("last_name").setValue(last_name.getText().toString());
+                                    databaseReference.child(firebaseUser.getUid()).child("email").setValue(email.getText().toString());
+                                    databaseReference.child(firebaseUser.getUid()).child("St_id").setValue(St_id.getText().toString());
+                                    databaseReference.child(firebaseUser.getUid()).child("Age").setValue(Age.getText().toString());
+                                    databaseReference.child(firebaseUser.getUid()).child("Ststus").setValue(true);
+
+                                    ///////
 
                                 } else {
                                     String Response = task.getException().getMessage();

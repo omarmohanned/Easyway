@@ -39,7 +39,7 @@
                 android:layout_margin="20dp"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:ems="15"
-                android:hint="@string/Name_signup" />
+                android:hint="Enter Last Name" />
 
             <EditText
                 android:id="@+id/email"
