@@ -15,12 +15,12 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         progressDialog1 = new ProgressDialog(SplashScreen.this);
-        progressDialog1.setMessage("hello");
+        progressDialog1.setMessage("Welcome To Easy Way");
         Handler a = new Handler();
         a.postDelayed(new Runnable() {
             @Override
             public void run() {
-                CountDownTimer a = new CountDownTimer(5000, 1000) {
+                CountDownTimer a = new CountDownTimer(3000, 1000) {
                     @Override
                     public void onTick(long l) {
                         progressDialog1.show();
@@ -34,7 +34,7 @@ public class SplashScreen extends AppCompatActivity {
                 }.start();
 
             }
-        }, 5000);
+        }, 3000);
     }
 
 

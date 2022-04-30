@@ -1,14 +1,16 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Sign_up extends AppCompatActivity {
+
+public class Sign_up_fragment extends Fragment {
+
     EditText first_name, last_name, St_id, Password, Conf_pass, email, Age;
     Spinner Location, Handicap;
     Button register;
@@ -27,18 +31,36 @@ public class Sign_up extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
 
+
+    public static Sign_up_fragment newInstance(String param1, String param2) {
+        Sign_up_fragment fragment = new Sign_up_fragment();
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public Sign_up_fragment() {
+        // Required empty public constructor
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         ///////////////
-        first_name = findViewById(R.id.first_name);
-        last_name = findViewById(R.id.last_name);
-        St_id = findViewById(R.id.St_id);
-        Password = findViewById(R.id.Password);
-        Conf_pass = findViewById(R.id.Conf_pass);
-        email = findViewById(R.id.email);
-        Age = findViewById(R.id.Age);
+        first_name = view.findViewById(R.id.first_name);
+        last_name =  view.findViewById(R.id.last_name);
+        St_id =  view.findViewById(R.id.St_id);
+        Password =  view.findViewById(R.id.Password);
+        Conf_pass =  view.findViewById(R.id.Conf_pass);
+        email =  view.findViewById(R.id.email);
+        Age =  view.findViewById(R.id.Age);
         ////////
         St_id.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +69,10 @@ public class Sign_up extends AppCompatActivity {
             }
         });
         ///////
-        Location = findViewById(R.id.Location);
-        Handicap = findViewById(R.id.Handicap);
+        Location =  view.findViewById(R.id.Location);
+        Handicap =  view.findViewById(R.id.Handicap);
         //////////
-        register = findViewById(R.id.Register);
+        register = view. findViewById(R.id.Register);
         /////////////
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -111,8 +133,15 @@ public class Sign_up extends AppCompatActivity {
 
 
             }
+
         });
 
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_sign_up_fragment, container, false);
     }
 }

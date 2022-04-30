@@ -1,58 +1,82 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
-public class sign_in extends AppCompatActivity {
+
+public class sign_in_fragment extends Fragment {
     EditText email, password;
     Button lOGIN;
     String email1, pass1;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
+
+
+
+    public sign_in_fragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
-        FirebaseUser currentuser = firebaseAuth.getCurrentUser();
-
-        if (currentuser != null) {
-
+        if (currentUser != null ) {
             updateUI();
         }
 
     }
 
     private void updateUI() {
-        Toast.makeText(getApplicationContext(), "YOU ARE ALREADY LOGGED IN", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        Toast.makeText(getContext(), "you are logged in", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+    }
+
+    public static sign_in_fragment newInstance(String param1, String param2) {
+        sign_in_fragment fragment = new sign_in_fragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         ////////
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         /////////
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.Password);
-        lOGIN = findViewById(R.id.LOGIN);
+        email =view. findViewById(R.id.email);
+        password = view.findViewById(R.id.Password);
+        lOGIN = view.findViewById(R.id.LOGIN);
         //////
         firebaseAuth = FirebaseAuth.getInstance();
         /////
@@ -70,8 +94,8 @@ public class sign_in extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                        finish();
+                                        startActivity(new Intent(getContext(), MainActivity.class));
+                                        getActivity().finish();
                                     } else{
                                         Snackbar.make(view, task.getException().getMessage().substring(30), Snackbar.LENGTH_LONG).show();
 
@@ -86,6 +110,12 @@ public class sign_in extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_sign_in_fragment, container, false);
     }
 }
