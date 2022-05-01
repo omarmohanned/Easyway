@@ -26,6 +26,7 @@ public class adapter_for_tabs extends FragmentStatePagerAdapter {
                 return new Sign_up_fragment();
 
 
+
             default:
                 return null;
 

@@ -29,8 +29,8 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="350dp"
-                android:layout_gravity="center"
-                android:layout_height="60dp" />
+                android:layout_height="60dp"
+                android:layout_gravity="center" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager2"
