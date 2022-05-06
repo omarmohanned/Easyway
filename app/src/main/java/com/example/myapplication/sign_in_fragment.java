@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 
 public class sign_in_fragment extends Fragment {
@@ -52,7 +50,7 @@ public class sign_in_fragment extends Fragment {
 
     private void updateUI() {
         Toast.makeText(getContext(), "you are logged in", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
     }
 
     public static sign_in_fragment newInstance(String param1, String param2) {
@@ -94,7 +92,7 @@ public class sign_in_fragment extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        startActivity(new Intent(getContext(), MainActivity.class));
+                                        startActivity(new Intent(getContext(), Login.class));
                                         getActivity().finish();
                                     } else{
                                         Snackbar.make(view, task.getException().getMessage().substring(30), Snackbar.LENGTH_LONG).show();

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,25 +57,33 @@ public class Sign_up_fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ///////////////
         first_name = view.findViewById(R.id.first_name);
-        last_name =  view.findViewById(R.id.last_name);
-        St_id =  view.findViewById(R.id.St_id);
-        Password =  view.findViewById(R.id.Password);
-        Conf_pass =  view.findViewById(R.id.Conf_pass);
-        email =  view.findViewById(R.id.email);
-        Age =  view.findViewById(R.id.Age);
-        Location =  view.findViewById(R.id.Location);
-        Handicap =  view.findViewById(R.id.Handicap);
+        last_name = view.findViewById(R.id.last_name);
+        St_id = view.findViewById(R.id.St_id);
+        Password = view.findViewById(R.id.Password);
+        Conf_pass = view.findViewById(R.id.Conf_pass);
+        email = view.findViewById(R.id.email);
+        Age = view.findViewById(R.id.Age);
+        Location = view.findViewById(R.id.Location);
+        Handicap = view.findViewById(R.id.Handicap);
         //////////
 
-        String[] loc = {"Select your location", "", "", "", "", ""};
-        String[] han = {"", "", "", "", "", ""};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, loc);
+        String[] loc = {"Select your location", "AMMAN", "IRBID", "AL-SALT", "AJLOUN"};
+        String[] han = {"Select from below", "YES", "NO"};
 
+
+        /////////////////////
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1, loc);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        ///////////////////
 
+        //////////////////
+        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1, han);
+        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        /////////////////
+        Handicap.setAdapter(arrayAdapter2);
         Location.setAdapter(arrayAdapter);
-
         ////////
+
         St_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,10 +91,10 @@ public class Sign_up_fragment extends Fragment {
             }
         });
         ///////
-        Location =  view.findViewById(R.id.Location);
-        Handicap =  view.findViewById(R.id.Handicap);
+        Location = view.findViewById(R.id.Location);
+        Handicap = view.findViewById(R.id.Handicap);
         //////////
-        register = view. findViewById(R.id.Register);
+        register = view.findViewById(R.id.Register);
         /////////////
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
