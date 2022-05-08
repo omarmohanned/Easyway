@@ -32,6 +32,7 @@ public class Sign_up_fragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
+    Double Balance = 2.0;
 
 
     public static Sign_up_fragment newInstance(String param1, String param2) {
@@ -116,6 +117,7 @@ public class Sign_up_fragment extends Fragment {
                                     databaseReference.child(firebaseUser.getUid()).child("St_id").setValue(St_id.getText().toString());
                                     databaseReference.child(firebaseUser.getUid()).child("Age").setValue(Age.getText().toString());
                                     databaseReference.child(firebaseUser.getUid()).child("Ststus").setValue(true);
+                                    databaseReference.child(firebaseUser.getUid()).child("Balance").setValue(Balance);
 
                                     ///////
 
