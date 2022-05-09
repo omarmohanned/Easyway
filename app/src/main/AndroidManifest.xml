@@ -8,9 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-
-
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
 
 
     <application
@@ -24,7 +22,7 @@
             android:name=".Main"
             android:exported="false" />
         <activity
-            android:name=".scannerview"
+            android:name=".setting"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
@@ -34,7 +32,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".setting"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
@@ -47,7 +45,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".setting"
+            android:name=".scannerview"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

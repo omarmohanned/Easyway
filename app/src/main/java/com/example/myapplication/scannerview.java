@@ -21,16 +21,19 @@ public class scannerview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scannerview);
+
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 IntentIntegrator intentIntegrator = new IntentIntegrator(scannerview.this);
                 intentIntegrator.setPrompt("for flash use volume up key");
                 intentIntegrator.setBeepEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
                 intentIntegrator.initiateScan();
+
             }
         });
     }
@@ -38,7 +41,10 @@ public class scannerview extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
         if (intentResult.getContents() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(scannerview.this);
             builder.setTitle("Result");
@@ -50,6 +56,7 @@ public class scannerview extends AppCompatActivity {
                 }
             });
             builder.show();
+
         } else {
             Toast.makeText(getApplicationContext(), "Nothing has been scanned", Toast.LENGTH_LONG).show();
 

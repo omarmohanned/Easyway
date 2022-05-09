@@ -70,7 +70,7 @@ public class Main extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), tutorial.class));
                         break;
                     case R.id.settings:
-                        // startActivity(new Intent(getApplicationContext(), settings.class));
+                         startActivity(new Intent(getApplicationContext(), setting.class));
                         break;
                     case R.id.sign_out:
 
