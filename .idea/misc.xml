@@ -16,14 +16,17 @@
         <entry key="..\:/MyApplication/app/src/main/res/drawable/ic_menu_camera.xml" value="0.2535" />
         <entry key="..\:/MyApplication/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.2535" />
         <entry key="..\:/MyApplication/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.2535" />
+        <entry key="..\:/MyApplication/app/src/main/res/drawable/ic_signup.xml" value="0.2535" />
         <entry key="..\:/MyApplication/app/src/main/res/drawable/side_nav_bar.xml" value="0.2535" />
         <entry key="..\:/MyApplication/app/src/main/res/font/font.xml" value="0.36770833333333336" />
         <entry key="..\:/MyApplication/app/src/main/res/font/open_sans_bold.xml" value="0.36770833333333336" />
+        <entry key="..\:/MyApplication/app/src/main/res/font/open_sans_semibold.xml" value="0.36770833333333336" />
+        <entry key="..\:/MyApplication/app/src/main/res/font/poppins_semibold.xml" value="0.36770833333333336" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/activity_log_in.xml" value="0.32916666666666666" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/activity_main2.xml" value="0.32916666666666666" />
-        <entry key="..\:/MyApplication/app/src/main/res/layout/activity_scannerview.xml" value="0.32916666666666666" />
-        <entry key="..\:/MyApplication/app/src/main/res/layout/activity_setting.xml" value="0.1911231884057971" />
+        <entry key="..\:/MyApplication/app/src/main/res/layout/activity_scannerview.xml" value="0.33" />
+        <entry key="..\:/MyApplication/app/src/main/res/layout/activity_setting.xml" value="0.33" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/activity_sig_in.xml" value="0.32916666666666666" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/activity_sign_up.xml" value="0.32916666666666666" />
@@ -33,7 +36,7 @@
         <entry key="..\:/MyApplication/app/src/main/res/layout/app_bar_main.xml" value="0.20425724637681159" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/content_main.xml" value="0.32916666666666666" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/fragment_gallery.xml" value="0.32916666666666666" />
-        <entry key="..\:/MyApplication/app/src/main/res/layout/fragment_home.xml" value="0.32916666666666666" />
+        <entry key="..\:/MyApplication/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/fragment_sign_in_fragment.xml" value="0.32916666666666666" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/fragment_sign_up_fragment.xml" value="0.33" />
         <entry key="..\:/MyApplication/app/src/main/res/layout/fragment_slideshow.xml" value="0.32916666666666666" />

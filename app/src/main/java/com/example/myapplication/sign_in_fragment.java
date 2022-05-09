@@ -50,7 +50,7 @@ public class sign_in_fragment extends Fragment {
 
     private void updateUI() {
         Toast.makeText(getContext(), "you are logged in", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
+        startActivity(new Intent(getActivity().getApplicationContext(), Main.class));
     }
 
     public static sign_in_fragment newInstance(String param1, String param2) {
@@ -86,13 +86,14 @@ public class sign_in_fragment extends Fragment {
                 if (email1.isEmpty() || pass1.isEmpty()) {
 
                     Snackbar.make(view, "Neither password or email should be empty", Snackbar.LENGTH_LONG).show();
+
                 } else {
                     firebaseAuth.signInWithEmailAndPassword(email1, pass1)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        startActivity(new Intent(getContext(), Login.class));
+                                        startActivity(new Intent(getContext(), Main.class));
                                         getActivity().finish();
                                     } else{
                                         Snackbar.make(view, task.getException().getMessage().substring(30), Snackbar.LENGTH_LONG).show();
