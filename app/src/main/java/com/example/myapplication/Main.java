@@ -33,28 +33,23 @@ public class Main extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.favourts, R.id.my_orders)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+
+
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected( MenuItem menuItem) {
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
                 menuItem.setCheckable(true);
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
@@ -70,11 +65,11 @@ public class Main extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), tutorial.class));
                         break;
                     case R.id.settings:
-                         startActivity(new Intent(getApplicationContext(), setting.class));
+                        startActivity(new Intent(getApplicationContext(), setting.class));
                         break;
                     case R.id.sign_out:
 
-                       // firebaseAuth.signOut();
+                        // firebaseAuth.signOut();
                         // startActivity(new Intent(getApplicationContext(), sign_in.class));
                         // finish();
                         break;
