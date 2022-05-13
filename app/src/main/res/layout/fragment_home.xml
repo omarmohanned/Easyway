@@ -23,10 +23,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/main_pic">
+                android:background="@drawable/icon_2">
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/geo_loc"
                     android:layout_width="96dp"
                     android:layout_height="33dp"
                     android:layout_marginTop="40dp"
@@ -51,7 +51,7 @@
                     android:layout_height="26dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/explore"
+                    android:background="@drawable/ic_outline_remove_red_eye_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,10 +138,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
         </LinearLayout>
     </ScrollView>

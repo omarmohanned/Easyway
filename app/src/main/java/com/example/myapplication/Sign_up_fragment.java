@@ -115,10 +115,11 @@ public class Sign_up_fragment extends Fragment {
                                     fullname = first_name.getText().toString() + " " + last_name.getText().toString();
                                     databaseReference.child(firebaseUser.getUid()).child("full_name").setValue(fullname);
                                     databaseReference.child(firebaseUser.getUid()).child("email").setValue(email.getText().toString());
-
                                     databaseReference.child(firebaseUser.getUid()).child("Age").setValue(Age.getText().toString());
                                     databaseReference.child(firebaseUser.getUid()).child("Ststus").setValue(true);
                                     databaseReference.child(firebaseUser.getUid()).child("Balance").setValue(Balance);
+                                    databaseReference.child(firebaseUser.getUid()).child("lat").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("lon").setValue("0");
                                     ///////
 
                                 } else {

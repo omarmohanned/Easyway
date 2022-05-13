@@ -40,7 +40,7 @@ public class Main extends AppCompatActivity {
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.favourts, R.id.my_orders)
+                R.id.nav_home, R.id.busses, R.id.my_orders)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -55,8 +55,8 @@ public class Main extends AppCompatActivity {
                     case R.id.nav_home:
                         Toast.makeText(getApplicationContext(), "Main menu", Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.favourts:
-                        // startActivity(new Intent(getApplicationContext(), favourits.class));
+                    case R.id.busses:
+                        startActivity(new Intent(getApplicationContext(), all_busses.class));
                         break;
                     case R.id.my_orders:
                         //  startActivity(new Intent(getApplicationContext(), my_orders.class));

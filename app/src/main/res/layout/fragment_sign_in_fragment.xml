@@ -25,8 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/purple_dak"
+                android:textColorHint="@color/purple_dak"
                 android:ems="15"
                 android:textSize="18dp"
                 android:inputType="textEmailAddress"
@@ -35,18 +35,17 @@
                 android:layout_margin="20dp"
                 android:hint="@string/sign_in_email"/>
 
+
             <EditText
                 android:id="@+id/Password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="18dp"
                 android:ems="15"
-                android:hint="@string/sign_in_pass" />
-
-
+                android:hint="@string/sign_in_pass"
+                android:textColor="@color/purple_dak"
+                android:textColorHint="@color/purple_dak"
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/LOGIN"

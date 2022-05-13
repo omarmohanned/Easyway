@@ -9,9 +9,9 @@
             android:title="@string/menu_home"/>
 
         <item
-            android:id="@+id/favourts"
+            android:id="@+id/busses"
             android:icon="@drawable/ic_favorite_border_black_24dp"
-            android:title="Favourites" />
+            android:title="All busses" />
         <item
             android:id="@+id/my_orders"
             android:icon="@drawable/ic_baseline_shopping_basket_24"

@@ -8,8 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -18,23 +17,43 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA8If5olmY4b0r3fH3Q7446aA9qvbhiaGo" />
+
+        <activity
+            android:name=".location"
+            android:exported="false"
+            android:label="@string/title_activity_location" />
+        <activity
+            android:name=".all_busses"
+            android:exported="false" />
         <activity
             android:name=".scannerview"
             android:exported="false" />
         <activity
             android:name=".setting"
             android:exported="false"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".tutorial"
             android:exported="false"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".setting"
+            android:name=".Main"
             android:exported="false"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".Capture"
@@ -45,7 +64,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Main"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

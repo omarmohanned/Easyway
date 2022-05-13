@@ -1,10 +1,11 @@
 package com.example.myapplication.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +13,28 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentHomeBinding;
+import com.example.myapplication.location;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private TextView geo_loc;
-    private Button Home,work;
+    private ImageButton fav_home, fav_school, fav_work;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
+    String lat, lon;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,13 +52,89 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        geo_loc = view.findViewById(R.id.geo_loc);
+        fav_home = view.findViewById(R.id.fav_home);
+        fav_school = view.findViewById(R.id.fav_school);
+        fav_work = view.findViewById(R.id.fav_work);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-    }
+        databaseReference.child(firebaseUser.getUid()).child("lat").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lat = snapshot.getValue(String.class);
+            }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference.child(firebaseUser.getUid()).child("lon").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lon = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        fav_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (lat.equals("0")||lon.equals("0")) {
+                    Snackbar.make(view, "Home", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(), location.class));
+                        }
+                    }).show();
+
+                } else {
+                    Snackbar.make(view, "Home", Snackbar.LENGTH_LONG).setAction("view Home location", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(), location.class));
+                        }
+                    }).show();
+                }
+
+
+            }
+
+
+        });
+        fav_work.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Work", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(getActivity(), location.class));
+                    }
+                }).show();
+
+            }
+        });
+        fav_school.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "School", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(getActivity(), location.class));
+                    }
+                }).show();
+
+            }
+        });
     }
 }

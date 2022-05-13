@@ -34,7 +34,8 @@ public class setting extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         //////
-        // Toast.makeText(getApplicationContext(),firebaseUser.getUid(),Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),firebaseUser.getUid(),Toast.LENGTH_LONG).show();
+
 
         databaseReference.child(firebaseUser.getUid()).child("full_name").addValueEventListener(new ValueEventListener() {
             @Override
