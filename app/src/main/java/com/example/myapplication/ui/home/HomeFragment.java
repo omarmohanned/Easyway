@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
-    String lat, lon;
+    String lat_home, lon_home,lat_school, lon_school,lat_work, lon_work,specify;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -62,10 +62,65 @@ public class HomeFragment extends Fragment {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-        databaseReference.child(firebaseUser.getUid()).child("lat").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(firebaseUser.getUid()).child("home").child("lat").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                lat = snapshot.getValue(String.class);
+                lat_home = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.child(firebaseUser.getUid()).child("home").child("lon").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lon_home = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.child(firebaseUser.getUid()).child("school").child("lat").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lat_school = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.child(firebaseUser.getUid()).child("school").child("lon").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lon_school = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.child(firebaseUser.getUid()).child("work").child("lat").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lat_work = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.child(firebaseUser.getUid()).child("work").child("lon").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                lon_work = snapshot.getValue(String.class);
             }
 
             @Override
@@ -74,27 +129,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        databaseReference.child(firebaseUser.getUid()).child("lon").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                lon = snapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         fav_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (lat.equals("0")||lon.equals("0")) {
+                if (lat_home.equals("0")||lon_home.equals("0")) {
                     Snackbar.make(view, "Home", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getActivity(), location.class));
+                            Intent home_loc=new Intent(getActivity(),location.class);
+                            specify="home";
+                            home_loc.putExtra("ret",specify);
+                            startActivity(home_loc);
+
                         }
                     }).show();
 
@@ -112,27 +160,57 @@ public class HomeFragment extends Fragment {
 
 
         });
+
         fav_work.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Work", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getActivity(), location.class));
-                    }
-                }).show();
+                if (lat_work.equals("0")||lon_work.equals("0")) {
+                    Snackbar.make(view, "work", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent work_loc=new Intent(getActivity(),location.class);
+                            specify="work";
+                            work_loc.putExtra("ret",specify);
+                            startActivity(work_loc);
+
+                        }
+                    }).show();
+
+                } else {
+                    Snackbar.make(view, "work", Snackbar.LENGTH_LONG).setAction("view work location", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(), location.class));
+                        }
+                    }).show();
+                }
 
             }
         });
+
         fav_school.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "School", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getActivity(), location.class));
-                    }
-                }).show();
+                if (lat_school.equals("0")||lon_school.equals("0")) {
+                    Snackbar.make(view, "school", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent school_loc=new Intent(getActivity(),location.class);
+                            specify="school";
+                            school_loc.putExtra("ret",specify);
+                            startActivity(school_loc);
+
+                        }
+                    }).show();
+
+                } else {
+                    Snackbar.make(view, "school", Snackbar.LENGTH_LONG).setAction("view school location", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(getActivity(), location.class));
+                        }
+                    }).show();
+                }
 
             }
         });

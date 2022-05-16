@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -47,7 +48,7 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
     private Uri imageuri;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser, firebaseUser1;
-    private String start_lon, start_lat;
+    private String start_lon, start_lat, specify_button;
     private DatabaseReference databaseReference, databaseReference1, databaseReference2;
 
 
@@ -79,7 +80,6 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         LatLng amman = new LatLng(31.946868, 35.909918);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -96,15 +96,16 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
         databaseReference1 = FirebaseDatabase.getInstance().getReference();
         databaseReference2 = FirebaseDatabase.getInstance().getReference();
 ////////////
-
+        Intent getintent = getIntent();
+        specify_button = getintent.getStringExtra("ret");
+        Toast.makeText(getApplicationContext(), specify_button, Toast.LENGTH_LONG).show();
+/////////
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(@NonNull LatLng latLng) {
                 take_order();
             }
         });
-
-
     }
 
     private void take_order() {
@@ -119,9 +120,15 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                 start_lat = String.valueOf(lat);
 
 
+                if (specify_button != null) {
+                    databaseReference.child(firebaseUser.getUid()).child(specify_button).child("lat").setValue(start_lat);
+                    databaseReference.child(firebaseUser.getUid()).child(specify_button).child("lon").setValue(start_lon);
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("your location"));
+                }else {
+                    mMap.addMarker(new MarkerOptions().position(latLng).title("your location"));
 
-                databaseReference.child(firebaseUser.getUid()).child("lat").setValue(start_lat);
-                databaseReference.child(firebaseUser.getUid()).child("lon").setValue(start_lon);
+                }
+
 
             }
         });
@@ -156,6 +163,7 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
 
             }
         };
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}, 10);

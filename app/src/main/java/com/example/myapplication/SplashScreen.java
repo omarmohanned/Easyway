@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         a.postDelayed(new Runnable() {
             @Override
             public void run() {
-                CountDownTimer a = new CountDownTimer(3000, 1000) {
+                CountDownTimer a = new CountDownTimer(1000, 1000) {
                     @Override
                     public void onTick(long l) {
                         progressDialog1.show();
@@ -34,7 +34,7 @@ public class SplashScreen extends AppCompatActivity {
                 }.start();
 
             }
-        }, 3000);
+        }, 1000);
     }
 
 

@@ -70,7 +70,7 @@
                 android:layout_marginBottom="225dp"
                 android:text="Forget Password"
                 android:textSize="18dp"
-                android:textColor="@color/white"
+                android:textColor="@color/purple_mid"
                 android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>

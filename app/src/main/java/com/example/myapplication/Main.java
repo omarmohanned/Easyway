@@ -25,6 +25,7 @@ public class Main extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class Main extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        firebaseAuth = FirebaseAuth.getInstance();
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -68,10 +69,9 @@ public class Main extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), setting.class));
                         break;
                     case R.id.sign_out:
-
-                        // firebaseAuth.signOut();
-                        // startActivity(new Intent(getApplicationContext(), sign_in.class));
-                        // finish();
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), SplashScreen.class));
+                        finish();
                         break;
                 }
                 drawer.closeDrawers();

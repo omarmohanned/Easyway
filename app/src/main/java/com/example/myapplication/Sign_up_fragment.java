@@ -118,8 +118,12 @@ public class Sign_up_fragment extends Fragment {
                                     databaseReference.child(firebaseUser.getUid()).child("Age").setValue(Age.getText().toString());
                                     databaseReference.child(firebaseUser.getUid()).child("Ststus").setValue(true);
                                     databaseReference.child(firebaseUser.getUid()).child("Balance").setValue(Balance);
-                                    databaseReference.child(firebaseUser.getUid()).child("lat").setValue("0");
-                                    databaseReference.child(firebaseUser.getUid()).child("lon").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("home").child("lat").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("home").child("lon").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("work").child("lat").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("work").child("lon").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("school").child("lat").setValue("0");
+                                    databaseReference.child(firebaseUser.getUid()).child("school").child("lon").setValue("0");
                                     ///////
 
                                 } else {

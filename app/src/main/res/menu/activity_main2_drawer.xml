@@ -20,25 +20,21 @@
 
         <item
             android:id="@+id/places"
-            android:title="LOCATIONS">
+            android:title="Update Location">
 
             <menu>
                 <item
-                    android:id="@+id/AMMAN"
-                    android:icon="@drawable/ic_baseline_my_location_24"
-                    android:title="Amman"></item>
+                    android:id="@+id/home"
+                    android:icon="@drawable/ic_baseline_home_24"
+                    android:title="Home"></item>
                 <item
-                    android:id="@+id/IRBID"
-                    android:icon="@drawable/ic_baseline_my_location_24"
-                    android:title="Irbid"></item>
+                    android:id="@+id/work"
+                    android:icon="@drawable/ic_baseline_work_24"
+                    android:title="Work"></item>
                 <item
-                    android:id="@+id/Al_salt"
-                    android:icon="@drawable/ic_baseline_my_location_24"
-                    android:title="Al salt"></item>
-                <item
-                    android:id="@+id/Ajloun"
-                    android:icon="@drawable/ic_baseline_my_location_24"
-                    android:title="Ajloun"></item>
+                    android:id="@+id/school"
+                    android:icon="@drawable/ic_baseline_school_24"
+                    android:title="School"></item>
             </menu>
 
         </item>
