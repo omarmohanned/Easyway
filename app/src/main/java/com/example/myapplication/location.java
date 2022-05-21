@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -16,6 +20,15 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,6 +44,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,7 +52,6 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityLocationBinding binding;
-    static final int requst_libary_picyure = 3;
     public Geocoder geocoder;
     public double lat_intent, lon_intent;
     List<Address> addresses;
@@ -48,8 +61,17 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
     private Uri imageuri;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser, firebaseUser1;
-    private String start_lon, start_lat, specify_button;
+    private String start_lon;
+    private String start_lat;
+    private String specify_button;
+    private String stop_lat;
+    private String stop_lon;
+    private String Fulladdress;
     private DatabaseReference databaseReference, databaseReference1, databaseReference2;
+    private EditText fee, stop_name;
+    private Button admit;
+    private Spinner Route_name;
+    private TextView lat_lon;
 
 
     @Override
@@ -59,14 +81,15 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
         binding = ActivityLocationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
-
     }
 
     @Override
@@ -80,12 +103,15 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        location();
+
+
         LatLng amman = new LatLng(31.946868, 35.909918);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mMap.setMyLocationEnabled(true);
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(amman));
 /////////
@@ -99,14 +125,108 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
         Intent getintent = getIntent();
         specify_button = getintent.getStringExtra("ret");
         Toast.makeText(getApplicationContext(), specify_button, Toast.LENGTH_LONG).show();
+
+        if (specify_button.equals("admin_loc")) {
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(@NonNull LatLng latLng) {
+                    add_route_admin();
+                    Toast.makeText(getApplicationContext(), "BUS STOPS", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        } else {
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(@NonNull LatLng latLng) {
+                    take_order();
+                }
+            });
+
+        }
 /////////
+
+    }
+
+    private void add_route_admin() {
+        mMap.clear();
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(@NonNull LatLng latLng) {
-                take_order();
+
+                mMap.addMarker(new MarkerOptions().position(latLng).title("your location"));
+
+                double lat = latLng.latitude;
+                double lon = latLng.longitude;
+                ////////////
+                stop_lon = String.valueOf(lon);
+                stop_lat = String.valueOf(lat);
+
+
+                final Dialog dialog = new Dialog(location.this);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.add_new_route);
+                String[] loc = {"Select your location", "AMMAN", "IRBID", "AL-SALT", "AJLOUN"};
+
+
+                try {
+                    addresses = geocoder.getFromLocation(lat, lon, 10);
+
+                    String address = addresses.get(0).getAddressLine(0);
+                    String area = addresses.get(0).getLocality();
+                    String city = addresses.get(0).getAdminArea();
+                    String country = addresses.get(0).getCountryName();
+
+                    Fulladdress = address + " " + area + " " + city + " " + country;
+                    ///SEE IT
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                //Fulladdress
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, loc);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                Route_name = dialog.findViewById(R.id.Route_name);
+                fee = dialog.findViewById(R.id.fee);
+                lat_lon = dialog.findViewById(R.id.lat_lon);
+                admit = dialog.findViewById(R.id.admit);
+                stop_name = dialog.findViewById(R.id.stop_name);
+                Route_name.setAdapter(arrayAdapter);
+                lat_lon.setText(Fulladdress);
+
+                admit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+
+                        if (Route_name.getSelectedItem().toString() != "Select your location") {
+                            databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("lat").setValue(stop_lat);
+                            databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("lon").setValue(stop_lon);
+                            databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("price").setValue(fee.getText().toString());
+                            databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("ADDRESS").setValue(Fulladdress);
+
+                            Toast.makeText(getApplicationContext(), "Bus stop Added successfully", Toast.LENGTH_LONG).show();
+
+
+                        } else {
+
+                            Toast.makeText(getApplicationContext(), "SELECT FROM THE SPINNER", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+
+                dialog.show();
+
             }
+
         });
+
+
     }
+
 
     private void take_order() {
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
@@ -119,12 +239,11 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                 start_lon = String.valueOf(lon);
                 start_lat = String.valueOf(lat);
 
-
                 if (specify_button != null) {
                     databaseReference.child(firebaseUser.getUid()).child(specify_button).child("lat").setValue(start_lat);
                     databaseReference.child(firebaseUser.getUid()).child(specify_button).child("lon").setValue(start_lon);
                     mMap.addMarker(new MarkerOptions().position(latLng).title("your location"));
-                }else {
+                } else {
                     mMap.addMarker(new MarkerOptions().position(latLng).title("your location"));
 
                 }

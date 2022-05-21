@@ -12,12 +12,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/icon_1"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon"
+        android:roundIcon="@drawable/icon_1"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
+        <activity
+            android:name=".complaints_admin"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -64,7 +69,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Admin_page"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

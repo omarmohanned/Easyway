@@ -30,8 +30,6 @@ public class sign_in_fragment extends Fragment {
     private FirebaseUser firebaseUser;
 
 
-
-
     public sign_in_fragment() {
         // Required empty public constructor
     }
@@ -42,7 +40,7 @@ public class sign_in_fragment extends Fragment {
         super.onStart();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
-        if (currentUser != null ) {
+        if (currentUser != null) {
             updateUI();
         }
 
@@ -72,7 +70,7 @@ public class sign_in_fragment extends Fragment {
         ////////
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         /////////
-        email =view. findViewById(R.id.email);
+        email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.Password);
         lOGIN = view.findViewById(R.id.LOGIN);
         //////
@@ -87,6 +85,11 @@ public class sign_in_fragment extends Fragment {
 
                     Snackbar.make(view, "Neither password or email should be empty", Snackbar.LENGTH_LONG).show();
 
+                } else if (email1.equals("admin@gmail.com") && pass1.equals("admin1234")) {
+
+                    startActivity(new Intent(getContext(),Admin_page.class));
+                    getActivity().finish();
+
                 } else {
                     firebaseAuth.signInWithEmailAndPassword(email1, pass1)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -95,21 +98,22 @@ public class sign_in_fragment extends Fragment {
                                     if (task.isSuccessful()) {
                                         startActivity(new Intent(getContext(), Main.class));
                                         getActivity().finish();
-                                    } else{
+                                    } else {
                                         Snackbar.make(view, task.getException().getMessage().substring(30), Snackbar.LENGTH_LONG).show();
 
                                     }
                                 }
                             });
-
-
                 }
 
 
             }
-        });
 
-    }
+
+
+    });
+
+}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
