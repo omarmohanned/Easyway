@@ -188,25 +188,30 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                 //Fulladdress
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_expandable_list_item_1, loc);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                /////////////////
                 Route_name = dialog.findViewById(R.id.Route_name);
                 fee = dialog.findViewById(R.id.fee);
                 lat_lon = dialog.findViewById(R.id.lat_lon);
                 admit = dialog.findViewById(R.id.admit);
                 stop_name = dialog.findViewById(R.id.stop_name);
+
                 Route_name.setAdapter(arrayAdapter);
                 lat_lon.setText(Fulladdress);
 
                 admit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        mMap.clear();
 
                         if (Route_name.getSelectedItem().toString() != "Select your location") {
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("lat").setValue(stop_lat);
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("lon").setValue(stop_lon);
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("price").setValue(fee.getText().toString());
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("ADDRESS").setValue(Fulladdress);
+                            ///////////
 
+
+                            ////////////
                             Toast.makeText(getApplicationContext(), "Bus stop Added successfully", Toast.LENGTH_LONG).show();
 
 
