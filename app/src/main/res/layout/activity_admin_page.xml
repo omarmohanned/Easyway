@@ -19,7 +19,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/icon_2" />
+                app:srcCompat="@drawable/admin_icon" />
 
             <TextView
                 android:id="@+id/textView2"
