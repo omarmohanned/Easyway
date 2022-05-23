@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin_page"
-    >
+    tools:context=".Admin_page">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,26 +13,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ADMIN PAGE"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/purple_mid"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_margin="60dp"
-                />
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 app:srcCompat="@drawable/icon_2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="50dp"
+                android:gravity="center"
+                android:text="ADMIN PAGE"
+                android:textColor="@color/purple_mid"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -44,11 +42,11 @@
                     android:id="@+id/complaints"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="72dp"
                     android:layout_marginEnd="68dp"
                     android:background="@drawable/ic_baseline_report_24"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.993"
                     app:layout_constraintStart_toEndOf="@+id/bus_Stop"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +63,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView7"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.062"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
@@ -73,12 +71,12 @@
                     android:id="@+id/bus_Stop"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="76dp"
+                    android:layout_marginStart="92dp"
                     android:background="@drawable/bus_stop"
                     app:layout_constraintBottom_toTopOf="@+id/textView6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.674" />
+                    app:layout_constraintVertical_bias="0.86" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -92,6 +90,58 @@
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
                     app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageView
+                    android:id="@+id/sign_out"
+                    android:layout_width="63dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginEnd="64dp"
+                    android:background="@drawable/ic_baseline_exit_to_app_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="60dp"
+                    android:gravity="center"
+                    android:text="Sign out"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.971"
+                    app:layout_constraintStart_toEndOf="@+id/textView12" />
+
+                <ImageView
+                    android:id="@+id/bus_route"
+                    android:layout_width="63dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="88dp"
+                    android:layout_marginTop="80dp"
+                    android:background="@drawable/ic_baseline_alt_route_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="84dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="64dp"
+                    android:gravity="center"
+                    android:text="All bus stops"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    app:layout_constraintVertical_bias="0.192" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

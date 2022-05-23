@@ -14,9 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Admin_page extends AppCompatActivity {
-    private ImageView bus_Stop, complaints;
+    private ImageView bus_Stop, complaints, bus_route, sign_out;
     private String specify;
-
 
 
     @Override
@@ -25,12 +24,28 @@ public class Admin_page extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
         bus_Stop = findViewById(R.id.bus_Stop);
         complaints = findViewById(R.id.complaints);
+        bus_route = findViewById(R.id.bus_route);
+        sign_out = findViewById(R.id.sign_out);
+        bus_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),all_busses.class));
+
+            }
+        });
+        sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),SplashScreen.class));
+                finish();
+            }
+        });
         bus_Stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent admin=new Intent(getApplicationContext(),location.class);
-                specify="admin_loc";
-                admin.putExtra("ret",specify);
+                Intent admin = new Intent(getApplicationContext(), location.class);
+                specify = "admin_loc";
+                admin.putExtra("ret", specify);
                 startActivity(admin);
 
             }
@@ -38,7 +53,7 @@ public class Admin_page extends AppCompatActivity {
         complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent(getApplicationContext(), complaints_admin.class));
+                startActivity(new Intent(getApplicationContext(), complaints_admin.class));
 
             }
         });
