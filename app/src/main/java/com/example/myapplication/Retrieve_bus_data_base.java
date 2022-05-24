@@ -8,6 +8,7 @@ public class Retrieve_bus_data_base {
     private String price;
     private String busStopName;
 
+
     public Retrieve_bus_data_base() {
     }
 

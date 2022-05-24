@@ -34,6 +34,12 @@
                 android:layout_margin="15dp"
                 android:layout_gravity="center"/>
 
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="confirm location" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/all_buses_rec"
                 android:layout_width="411dp"
