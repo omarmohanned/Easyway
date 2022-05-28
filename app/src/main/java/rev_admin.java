@@ -1,5 +1,3 @@
-package com.example.myapplication;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +7,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.R;
+import com.example.myapplication.Retrieve_bus_data_base;
+import com.example.myapplication.all_buses_adapter;
+import com.example.myapplication.ret_rev;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -16,40 +18,43 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class all_buses_adapter extends RecyclerView.Adapter<all_buses_adapter.imageviewholder> {
+
+public class rev_admin extends RecyclerView.Adapter<rev_admin.imageviewholder> {
 
     private Context mcontext;
-    private List<Retrieve_bus_data_base> mlist;
+    private List<ret_rev> mlist;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
 
-    public all_buses_adapter() {
+
+    public rev_admin() {
     }
 
-    public all_buses_adapter(Context mcontext, List<Retrieve_bus_data_base> mlist) {
+    public rev_admin(Context mcontext, List<ret_rev> mlist) {
         this.mcontext = mcontext;
         this.mlist = mlist;
     }
 
     @NonNull
     @Override
+
     public imageviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view=LayoutInflater.from(mcontext).inflate(R.layout.recy_view_content,parent,false);
-       return new imageviewholder(view);
+        View view = LayoutInflater.from(mcontext).inflate(R.layout.all_rev_admin, parent, false);
+        return new rev_admin.imageviewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull imageviewholder holder, int position) {
-
         databaseReference= FirebaseDatabase.getInstance().getReference();
+        firebaseAuth=FirebaseAuth.getInstance();
 
-        final Retrieve_bus_data_base ret=mlist.get(position);
+        final ret_rev ret=mlist.get(position);
 
-        holder.stop_name.setText(ret.getBusStopName());
-        holder.address.setText(ret.getADDRESS());
-        holder.price.setText(ret.getPrice()+"JD");
+        holder.name_user.setText(ret.getUser());
+        holder.stars.setText(ret.getRev_num());
+
     }
 
 
@@ -58,18 +63,15 @@ public class all_buses_adapter extends RecyclerView.Adapter<all_buses_adapter.im
         return mlist.size();
     }
 
+    public class imageviewholder extends RecyclerView.ViewHolder {
+        private TextView name_user, stars;
+
+        public imageviewholder(@NonNull View itemView) {
+            super(itemView);
+            name_user=itemView.findViewById(R.id.name_user);
+            stars=itemView.findViewById(R.id.stars);
 
 
-  public class imageviewholder extends RecyclerView.ViewHolder{
-        private TextView stop_name,address,price;
-
-      public imageviewholder(@NonNull View itemView) {
-          super(itemView);
-
-          stop_name=itemView.findViewById(R.id.stop_name);
-          address=itemView.findViewById(R.id.address);
-          price=itemView.findViewById(R.id.price);
-
-      }
-  }
+        }
+    }
 }

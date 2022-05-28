@@ -41,7 +41,7 @@ public class Main extends AppCompatActivity {
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.busses, R.id.my_orders)
+                R.id.nav_home, R.id.busses, R.id.complaints)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -59,8 +59,8 @@ public class Main extends AppCompatActivity {
                     case R.id.busses:
                         startActivity(new Intent(getApplicationContext(), all_busses.class));
                         break;
-                    case R.id.my_orders:
-                        //  startActivity(new Intent(getApplicationContext(), my_orders.class));
+                    case R.id.complaints:
+                          startActivity(new Intent(getApplicationContext(), user_complain.class));
                         break;
                     case R.id.tutorial:
                         startActivity(new Intent(getApplicationContext(), tutorial.class));

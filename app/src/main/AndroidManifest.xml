@@ -18,10 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".user_complain"
+            android:exported="false" />
+        <activity
             android:name=".complaints_admin"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Admin_page"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -69,7 +72,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Admin_page"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
