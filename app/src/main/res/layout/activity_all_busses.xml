@@ -13,14 +13,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="174dp"
                 android:layout_height="30dp"
-              android:layout_margin="15dp"
                 android:layout_gravity="center"
+                android:layout_margin="15dp"
                 android:gravity="center"
                 android:text="ALL BUS STOPS"
                 android:textColor="@color/purple_mid"
@@ -31,8 +31,8 @@
                 android:id="@+id/spinner_loc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:layout_margin="15dp" />
 
             <Button
                 android:id="@+id/confirm"

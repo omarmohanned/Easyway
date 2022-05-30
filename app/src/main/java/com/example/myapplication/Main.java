@@ -57,10 +57,10 @@ public class Main extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Main menu", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.busses:
-                        startActivity(new Intent(getApplicationContext(), all_busses.class));
+                        startActivity(new Intent(getApplicationContext(), trip.class));
                         break;
                     case R.id.complaints:
-                          startActivity(new Intent(getApplicationContext(), user_complain.class));
+                        startActivity(new Intent(getApplicationContext(), user_complain.class));
                         break;
                     case R.id.tutorial:
                         startActivity(new Intent(getApplicationContext(), tutorial.class));

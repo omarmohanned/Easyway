@@ -31,7 +31,6 @@ public class all_busses extends AppCompatActivity {
     private List<Retrieve_bus_data_base> retrieve_bus_data_bases;
     private Button confirm;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +63,8 @@ public class all_busses extends AppCompatActivity {
     }
 
     private void retrive_class() {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("bus_stops").child(spinner_loc.getSelectedItem().toString());
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("bus_stops").child(spinner_loc.getSelectedItem().toString());
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,6 +73,8 @@ public class all_busses extends AppCompatActivity {
                     Retrieve_bus_data_base retrieve = ds.getValue(Retrieve_bus_data_base.class);
                     retrieve_bus_data_bases.add(retrieve);
                 }
+
+
                 all_buses_adapter = new all_buses_adapter(all_busses.this, retrieve_bus_data_bases);
                 all_buses_rec.setAdapter(all_buses_adapter);
 

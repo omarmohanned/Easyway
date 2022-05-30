@@ -210,7 +210,9 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("ADDRESS").setValue(Fulladdress);
                             ///////////
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("busStopName").setValue(stop_name.getText().toString());
+                            //////////
 
+                            databaseReference2.child("bus_stops_names").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).setValue(stop_name.getText().toString());
                             ////////////
                             Toast.makeText(getApplicationContext(), "Bus stop Added successfully", Toast.LENGTH_LONG).show();
 

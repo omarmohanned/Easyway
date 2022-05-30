@@ -28,13 +28,14 @@
                 android:textColor="@color/purple_mid"/>
 
 
-            <EditText
-                android:id="@+id/editTextTextPersonName"
+            <RatingBar
+                android:id="@+id/ratingBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:numStars="5"
+                android:layout_margin="20dp"
+
+                />
 
             <Button
                 android:id="@+id/add_comp"
@@ -45,7 +46,7 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="20dp"
-                android:text="ADD complaint" />
+                android:text="ADD Review" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,12 +18,12 @@ import com.google.firebase.storage.StorageReference;
 
 public class user_complain extends AppCompatActivity {
 
-    private EditText editTextTextPersonName;
+    private RatingBar ratingBar;
     private Button add_comp;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
-    String new_id;
+    String new_id, rating_string;
 
 
     @Override
@@ -32,8 +33,7 @@ public class user_complain extends AppCompatActivity {
         setContentView(R.layout.activity_user_complain);
 
         add_comp = findViewById(R.id.add_comp);
-        editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
-
+        ratingBar = findViewById(R.id.ratingBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -41,11 +41,12 @@ public class user_complain extends AppCompatActivity {
         add_comp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference.child(firebaseUser.getUid()).child("comp").setValue(editTextTextPersonName.getText().toString());
+                rating_string = String.valueOf(ratingBar.getRating());
 
-                new_id=databaseReference.push().getKey();
+                databaseReference.child(firebaseUser.getUid()).child("comp").setValue(rating_string);
+                new_id = databaseReference.push().getKey();
 
-                databaseReference.child("all_comp").child(new_id).child("rev_num").setValue(editTextTextPersonName.getText().toString());
+                databaseReference.child("all_comp").child(new_id).child("rev_num").setValue(rating_string);
                 databaseReference.child("all_comp").child(new_id).child("user").setValue(firebaseUser.getUid());
 
 

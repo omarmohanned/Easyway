@@ -1,3 +1,5 @@
+package com.example.myapplication;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.R;
-import com.example.myapplication.Retrieve_bus_data_base;
-import com.example.myapplication.all_buses_adapter;
-import com.example.myapplication.ret_rev;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
