@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView15"
@@ -28,36 +28,58 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/spinner"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
+                android:id="@+id/main_loc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:gravity="center"
                 android:textColor="@color/purple_mid"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
-            <Spinner
-                android:id="@+id/spinner2"
+            <Button
+                android:id="@+id/choose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="display stops"
+                android:textColor="@color/purple_mid"
+                />
+
+            <Spinner
+                android:id="@+id/from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:gravity="center"
                 android:textColor="@color/purple_mid"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"/>
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/button2"
+            <Spinner
+                android:id="@+id/to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="GO"
-                android:textColor="@color/purple_mid"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_margin="20dp"/>
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:textColor="@color/purple_mid"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/go"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="GO to maps"
+                android:textColor="@color/purple_mid" />
         </LinearLayout>
     </ScrollView>
 

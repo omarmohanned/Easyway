@@ -68,6 +68,9 @@ public class Main extends AppCompatActivity {
                     case R.id.settings:
                         startActivity(new Intent(getApplicationContext(), setting.class));
                         break;
+                    case R.id.Scan:
+                        startActivity(new Intent(getApplicationContext(), scannerview.class));
+                        break;
                     case R.id.sign_out:
                         firebaseAuth.signOut();
                         startActivity(new Intent(getApplicationContext(), SplashScreen.class));

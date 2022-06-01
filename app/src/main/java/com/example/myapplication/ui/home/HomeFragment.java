@@ -117,6 +117,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
         databaseReference.child(firebaseUser.getUid()).child("work").child("lon").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -133,7 +134,6 @@ public class HomeFragment extends Fragment {
         fav_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (lat_home.equals("0")||lon_home.equals("0")) {
                     Snackbar.make(view, "Home", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
                         @Override
