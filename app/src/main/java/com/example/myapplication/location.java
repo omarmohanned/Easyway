@@ -191,12 +191,71 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                 }
             });
 
-            LatLng home_1 = new LatLng(31.966523297914733, 35.91354891657829);
+            final LatLng home_1 = new LatLng(31.966523297914733, 35.91354891657829);
             mMap.addMarker(new MarkerOptions().position(home_1).title("Home location"));
 
         } else if (specify_button.equals("work_place")) {
+            mMap.clear();
+            databaseReference4.child(firebaseUser.getUid()).child("work").child("lat").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    home_lat = snapshot.getValue(String.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            databaseReference4.child(firebaseUser.getUid()).child("work").child("lon").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    home_lon = snapshot.getValue(String.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            final LatLng home_1 = new LatLng(31.966523297914733, 35.91354891657829);
+
+            mMap.addMarker(new MarkerOptions().position(home_1).title("work location"));
+
 
         } else if (specify_button.equals("school_place")) {
+            mMap.clear();
+            databaseReference4.child(firebaseUser.getUid()).child("school").child("lat").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    home_lat = snapshot.getValue(String.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            databaseReference4.child(firebaseUser.getUid()).child("school").child("lon").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    home_lon = snapshot.getValue(String.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            final LatLng home_1 = new LatLng(31.966523297914733, 35.91354891657829);
+            mMap.addMarker(new MarkerOptions().position(home_1).title("school location"));
+
 
         }
 
