@@ -26,6 +26,7 @@ public class Main extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private FirebaseAuth firebaseAuth;
+    private String specify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,24 @@ public class Main extends AppCompatActivity {
                         break;
                     case R.id.complaints:
                         startActivity(new Intent(getApplicationContext(), user_complain.class));
+                        break;
+                    case R.id.home:
+                        Intent home_loc = new Intent(getApplicationContext(), location.class);
+                        specify = "home";
+                        home_loc.putExtra("ret", specify);
+                        startActivity(home_loc);
+                        break;
+                    case R.id.work:
+                        Intent work_loc = new Intent(getApplicationContext(), location.class);
+                        specify = "work";
+                        work_loc.putExtra("ret", specify);
+                        startActivity(work_loc);
+                        break;
+                    case R.id.school:
+                        Intent school_loc = new Intent(getApplicationContext(), location.class);
+                        specify = "school";
+                        school_loc.putExtra("ret", specify);
+                        startActivity(school_loc);
                         break;
                     case R.id.tutorial:
                         startActivity(new Intent(getApplicationContext(), tutorial.class));

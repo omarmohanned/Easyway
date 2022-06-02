@@ -40,8 +40,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.myapplication.databinding.ActivityLocationBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
@@ -67,7 +70,9 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
     private String stop_lat;
     private String stop_lon;
     private String Fulladdress;
-    private DatabaseReference databaseReference, databaseReference1, databaseReference2;
+    private String home_lat, home_lon, school_lat, school_lon, work_lat, work_lon;
+    private double home_lat_dou, home_lon_dou, school_lat_dou, school_lon_dou, work_lat_dou, work_lon_dou;
+    private DatabaseReference databaseReference, databaseReference1, databaseReference2, databaseReference4;
     private EditText fee, stop_name;
     private Button admit;
     private Spinner Route_name;
@@ -121,6 +126,7 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference1 = FirebaseDatabase.getInstance().getReference();
         databaseReference2 = FirebaseDatabase.getInstance().getReference();
+        databaseReference4 = FirebaseDatabase.getInstance().getReference();
 ////////////
         Intent getintent = getIntent();
         specify_button = getintent.getStringExtra("ret");
@@ -135,7 +141,7 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                 }
             });
 
-        } else {
+        } else if (specify_button.equals("home")) {
             mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                 @Override
                 public void onMapLongClick(@NonNull LatLng latLng) {
@@ -143,8 +149,56 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                 }
             });
 
-        }
+        } else if (specify_button.equals("work")) {
 
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(@NonNull LatLng latLng) {
+                    take_order();
+                }
+            });
+        } else if (specify_button.equals("school")) {
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(@NonNull LatLng latLng) {
+                    take_order();
+                }
+            });
+        } else if (specify_button.equals("home_place")) {
+            mMap.clear();
+            databaseReference4.child(firebaseUser.getUid()).child("home").child("lat").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    home_lat = snapshot.getValue(String.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            databaseReference4.child(firebaseUser.getUid()).child("home").child("lon").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    home_lon = snapshot.getValue(String.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            LatLng home_1 = new LatLng(31.966523297914733, 35.91354891657829);
+            mMap.addMarker(new MarkerOptions().position(home_1).title("Home location"));
+
+        } else if (specify_button.equals("work_place")) {
+
+        } else if (specify_button.equals("school_place")) {
+
+        }
 
     }
 
@@ -211,12 +265,9 @@ public class location extends FragmentActivity implements OnMapReadyCallback {
                             ///////////
                             databaseReference1.child("bus_stops").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).child("busStopName").setValue(stop_name.getText().toString());
                             //////////
-
                             databaseReference2.child("bus_stops_names").child(Route_name.getSelectedItem().toString()).child(stop_name.getText().toString()).setValue(stop_name.getText().toString());
                             ////////////
                             Toast.makeText(getApplicationContext(), "Bus stop Added successfully", Toast.LENGTH_LONG).show();
-
-
                         } else {
 
                             Toast.makeText(getApplicationContext(), "SELECT FROM THE SPINNER", Toast.LENGTH_LONG).show();

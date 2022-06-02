@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Recharge_code"
+            android:exported="false" />
+        <activity
             android:name=".trip"
             android:exported="false" />
         <activity

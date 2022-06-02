@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
-    String lat_home, lon_home,lat_school, lon_school,lat_work, lon_work,specify;
+    String lat_home, lon_home, lat_school, lon_school, lat_work, lon_work, specify;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -134,13 +134,13 @@ public class HomeFragment extends Fragment {
         fav_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (lat_home.equals("0")||lon_home.equals("0")) {
+                if (lat_home.equals("0") || lon_home.equals("0")) {
                     Snackbar.make(view, "Home", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent home_loc=new Intent(getActivity(),location.class);
-                            specify="home";
-                            home_loc.putExtra("ret",specify);
+                            Intent home_loc = new Intent(getActivity(), location.class);
+                            specify = "home";
+                            home_loc.putExtra("ret", specify);
                             startActivity(home_loc);
 
                         }
@@ -150,7 +150,10 @@ public class HomeFragment extends Fragment {
                     Snackbar.make(view, "Home", Snackbar.LENGTH_LONG).setAction("view Home location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getActivity(), location.class));
+                            Intent home_loc = new Intent(getActivity(), location.class);
+                            specify = "home_place";
+                            home_loc.putExtra("ret", specify);
+                            startActivity(home_loc);
                         }
                     }).show();
                 }
@@ -164,13 +167,13 @@ public class HomeFragment extends Fragment {
         fav_work.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (lat_work.equals("0")||lon_work.equals("0")) {
+                if (lat_work.equals("0") || lon_work.equals("0")) {
                     Snackbar.make(view, "work", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent work_loc=new Intent(getActivity(),location.class);
-                            specify="work";
-                            work_loc.putExtra("ret",specify);
+                            Intent work_loc = new Intent(getActivity(), location.class);
+                            specify = "work";
+                            work_loc.putExtra("ret", specify);
                             startActivity(work_loc);
 
                         }
@@ -180,7 +183,11 @@ public class HomeFragment extends Fragment {
                     Snackbar.make(view, "work", Snackbar.LENGTH_LONG).setAction("view work location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getActivity(), location.class));
+                            Intent work_loc = new Intent(getActivity(), location.class);
+                            specify = "work_place";
+                            work_loc.putExtra("ret", specify);
+                            startActivity(work_loc);
+
                         }
                     }).show();
                 }
@@ -191,13 +198,13 @@ public class HomeFragment extends Fragment {
         fav_school.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (lat_school.equals("0")||lon_school.equals("0")) {
+                if (lat_school.equals("0") || lon_school.equals("0")) {
                     Snackbar.make(view, "school", Snackbar.LENGTH_LONG).setAction("click to add location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent school_loc=new Intent(getActivity(),location.class);
-                            specify="school";
-                            school_loc.putExtra("ret",specify);
+                            Intent school_loc = new Intent(getActivity(), location.class);
+                            specify = "school";
+                            school_loc.putExtra("ret", specify);
                             startActivity(school_loc);
 
                         }
@@ -207,7 +214,11 @@ public class HomeFragment extends Fragment {
                     Snackbar.make(view, "school", Snackbar.LENGTH_LONG).setAction("view school location", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            startActivity(new Intent(getActivity(), location.class));
+                            Intent school_loc = new Intent(getActivity(), location.class);
+                            specify = "school_place";
+                            school_loc.putExtra("ret", specify);
+                            startActivity(school_loc);
+
                         }
                     }).show();
                 }

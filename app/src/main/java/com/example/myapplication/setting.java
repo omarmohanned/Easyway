@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 public class setting extends AppCompatActivity {
     private TextView get_name, get_balance, get_email, email;
 
-    private Button change_pass;
+
+    private Button change_pass, recharge;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
@@ -39,7 +41,7 @@ public class setting extends AppCompatActivity {
         get_balance = findViewById(R.id.get_balance);
         get_email = findViewById(R.id.get_email);
         change_pass = findViewById(R.id.change_pass);
-
+        recharge = findViewById(R.id.recharge);
         //////
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -83,7 +85,12 @@ public class setting extends AppCompatActivity {
 
             }
         });
-
+        recharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Recharge_code.class));
+            }
+        });
         change_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,18 +118,18 @@ public class setting extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                            firebaseAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Snackbar.make(view,"please check your email",Snackbar.LENGTH_LONG).show();
-                                        change.dismiss();
-                                    } else {
-                                        Snackbar.make(view,"wrong email",Snackbar.LENGTH_LONG).show();
-                                        change.dismiss();
-                                    }
+                        firebaseAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Snackbar.make(view, "please check your email", Snackbar.LENGTH_LONG).show();
+                                    change.dismiss();
+                                } else {
+                                    Snackbar.make(view, "wrong email", Snackbar.LENGTH_LONG).show();
+                                    change.dismiss();
                                 }
-                            });
+                            }
+                        });
 
 
                     }

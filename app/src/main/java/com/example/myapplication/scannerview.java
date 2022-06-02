@@ -28,7 +28,7 @@ public class scannerview extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
-    private int balan,new_bal;
+    private int balan, new_bal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,15 @@ public class scannerview extends AppCompatActivity {
         setContentView(R.layout.activity_scannerview);
 
 
-        databaseReference= FirebaseDatabase.getInstance().getReference();
-        firebaseAuth=FirebaseAuth.getInstance();
-        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         databaseReference.child(firebaseUser.getUid()).child("Balance").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                balan=snapshot.getValue(int.class);
-                Toast.makeText(getApplicationContext(),"Your current balance is:"+String.valueOf(balan)+" Trips",Toast.LENGTH_LONG).show();
+                balan = snapshot.getValue(int.class);
+                Toast.makeText(getApplicationContext(), "Your current balance is:" + String.valueOf(balan) + " Trips", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -85,8 +86,14 @@ public class scannerview extends AppCompatActivity {
             builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    new_bal=balan-1;
-                    dialogInterface.dismiss();
+                    new_bal = balan - 1;
+                    if (new_bal <= 0) {
+                        Toast.makeText(getApplicationContext(), "Recharge your balance", Toast.LENGTH_LONG).show();
+                    } else {
+                        databaseReference.child(firebaseUser.getUid()).child("Balance").setValue(new_bal);
+                        dialogInterface.dismiss();
+                    }
+
                 }
             });
             builder.show();
