@@ -23,7 +23,7 @@ public class tutorial extends AppCompatActivity {
         mediaController = new MediaController(getApplicationContext());
         VideoView videoView = findViewById(R.id.videoView);
         //////////////////////////////////////////////////
-        String videopath = "android.resource://com.example.sufretna/" + R.raw.tut;
+        String videopath = "android.resource://com.example.sufretna/" + R.raw.tutorial;
         Uri uri = Uri.parse(videopath);
         videoView.setVideoURI(uri);
         videoView.setMediaController(mediaController);
